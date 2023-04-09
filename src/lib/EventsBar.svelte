@@ -6,6 +6,12 @@
   export let selectEvent: (index: number) => void;
   export let toggleEvents: () => void;
   export let showEvents: boolean;
+
+  const formatDate = (date) => {
+    const dateStr = date.split(" ");
+    const newDate = `${dateStr[1]} ${dateStr[2]}`;
+    return newDate.substring(0, newDate.length - 1);
+  };
 </script>
 
 <aside class={showEvents ? "" : "close"}>
@@ -15,10 +21,13 @@
     {#each events as event, index}
       <li
         class={eventsIdx === index && "selected"}
-        on:click={() => selectEvent(index)}
+        on:click={() => {
+          selectEvent(index);
+          toggleEvents();
+        }}
         on:keydown
       >
-        {event.title}
+        {formatDate(event.date)} - {event.title}
       </li>
     {/each}
   </ul>

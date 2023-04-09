@@ -47,6 +47,8 @@
       if (eventsIdx === 0) return;
       eventsIdx -= 1;
     }
+    startX = undefined;
+    endX = undefined;
   };
 </script>
 
