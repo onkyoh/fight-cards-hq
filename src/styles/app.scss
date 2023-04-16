@@ -77,6 +77,10 @@ header {
         align-items: center;
         gap: 1rem;
         font-size: 1.5rem;
+        .big {
+            line-height: 0.8rem;
+            padding-bottom: 0.2rem;
+        }
         span {
             cursor: pointer;
         }
@@ -111,9 +115,11 @@ header {
             a {
                 flex: 1;
                 padding: 0.4rem 0.2rem;
+                padding-top: 0.55rem;
                 text-decoration: none;
                 border-radius: 0.5rem;
                 text-align: center;
+
                 &:first-of-type {
                     background-color: $red;
                     color: white;
@@ -164,8 +170,10 @@ ul {
     height: 100%;
     li {
         padding: 0.5rem 1rem;
+        padding-top: 0.7rem;
         @include boxShadow(2px);
         border-radius: 0.5rem;
+        text-overflow: ellipsis;
         cursor: pointer;
         transition: background-color 0.15s ease-in-out;
         &:hover {

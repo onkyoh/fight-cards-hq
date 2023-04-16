@@ -63,7 +63,10 @@
   {#if events && events.length > 0}
     <div>
       {#each events as event, index}
-        <span on:click={() => selectEvent(index)} on:keydown
+        <span
+          on:click={() => selectEvent(index)}
+          on:keydown
+          class={eventsIdx === index && "big"}
           >{eventsIdx === index ? "●" : "•"}</span
         >
       {/each}
