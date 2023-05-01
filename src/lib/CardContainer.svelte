@@ -41,11 +41,11 @@
   const onTouchEnd = (e: TouchEvent) => {
     if (startX - endX > 50) {
       if (eventsIdx === 9) return;
-      eventsIdx += 1;
+      selectEvent(eventsIdx + 1);
     }
     if (startX - endX < -50) {
       if (eventsIdx === 0) return;
-      eventsIdx -= 1;
+      selectEvent(eventsIdx - 1);
     }
     startX = undefined;
     endX = undefined;

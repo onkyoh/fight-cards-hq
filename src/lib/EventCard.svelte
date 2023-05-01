@@ -67,6 +67,7 @@
   onMount(() => {
     timeLeft = dateToMs(event.date) - new Date().getTime();
   });
+  3;
 
   onDestroy(() => {
     clearInterval(timer);
@@ -81,15 +82,15 @@
 
 <h4>{event.date}</h4>
 <h4 id="timer">{formatTimer(timeLeft)}</h4>
+<h5>MAIN</h5>
 <ul>
-  <h5>MAIN</h5>
   {#each event.fights.filter((fight) => fight.main) as fight}
     <Matchup matchup={fight} />
   {/each}
 </ul>
 {#if event.fights.filter((fight) => !fight.main).length > 0}
+  <h5>PRELIMS</h5>
   <ul>
-    <h5>PRELIMS</h5>
     {#each event.fights.filter((fight) => !fight.main) as fight}
       <Matchup matchup={fight} />
     {/each}

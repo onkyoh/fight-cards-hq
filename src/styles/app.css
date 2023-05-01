@@ -1,12 +1,13 @@
 @font-face {
-  font-family: Bebas Neue;
-  src: url(../assets/BebasNeue-Regular.ttf);
+  font-family: "Bebas Neue";
+  src: url("../assets/BebasNeue-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Bebas Neue;
+  font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-size: 1.1rem;
   -webkit-user-select: none;
@@ -101,7 +102,7 @@ header {
   text-align: center;
 }
 .card-container ul li a:first-of-type {
-  background-color: #f13f3f;
+  background-color: #d43939;
   color: white;
 }
 .card-container ul li a:last-of-type {
@@ -158,7 +159,7 @@ aside ul li:hover {
   color: white;
 }
 aside ul .selected {
-  background-color: #f13f3f !important;
+  background-color: #d43939 !important;
   color: white;
 }
 
@@ -178,12 +179,18 @@ body {
 body h3, body h4, body h5, body span {
   color: black;
 }
+body aside li {
+  background-color: #e4e0d4;
+}
 body * {
   background-color: #f2eee2;
   color: black;
 }
 body * h3, body * h4, body * h5, body * span {
   color: black;
+}
+body * aside li {
+  background-color: #e4e0d4;
 }
 
 body.dark-mode {

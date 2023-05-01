@@ -1,21 +1,21 @@
 @font-face {
-    font-family: Bebas Neue;
-    src: url(../assets/BebasNeue-Regular.ttf);
-}
-
-* {
+    font-family: 'Bebas Neue';
+    src: url('../assets/BebasNeue-Regular.ttf') format('truetype');
+    font-display: swap;
+  }
+  
+  * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Bebas Neue;
+    font-family: 'Bebas Neue', sans-serif;
     font-weight: 400;
     font-size: 1.1rem;
     user-select: none;
-}
+  }
+  
 
-
-
-$red: #f13f3f;
+$red: #d43939;
 $blue: #4a4aee;
 
 @mixin light-styles {
@@ -23,6 +23,11 @@ $blue: #4a4aee;
     color: black;
     h3, h4, h5, span {
         color: black;
+    }
+    aside {
+        li {
+            background-color: #e4e0d4;
+        }
     }
 }
 

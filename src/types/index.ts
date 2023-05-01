@@ -1,3 +1,9 @@
+export interface IData {
+  updatedAt: string;
+  _id: string;
+  data: IEvent[]
+}
+
 export interface IFight {
     main: boolean;
     fighterA: {

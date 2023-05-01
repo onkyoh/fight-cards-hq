@@ -7,7 +7,7 @@
   export let toggleEvents: () => void;
   export let showEvents: boolean;
 
-  const formatDate = (date) => {
+  const formatDate = (date: string) => {
     const dateStr = date.split(" ");
     const newDate = `${dateStr[1]} ${dateStr[2]}`;
     return newDate.substring(0, newDate.length - 1);
