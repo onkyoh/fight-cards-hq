@@ -28,11 +28,14 @@
   
       const day = parseInt(dayStr.replace(",", ""));
   
-      if (ofDay === "PM") {
-        hours += 12;
-      }
-  
-      hours += 4; //ET to GMT
+      if (ofDay === "PM" && hours !== 12) {
+      hours += 12;
+    }
+
+    // Get timezone offset from user's device
+
+    const timezoneOffset = new Date().getTimezoneOffset() / 60;
+    hours -= timezoneOffset; // Adjust for timezone
   
       const utcDate = new Date(Date.UTC(2023, month, day, hours, minutes));
   
