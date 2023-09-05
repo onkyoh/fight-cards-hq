@@ -29,16 +29,19 @@
 
     const day = parseInt(dayStr.replace(",", ""));
 
-    if (ofDay === "PM") {
+    if (ofDay === "PM" && hours !== 12) {
       hours += 12;
     }
 
-    hours += 4; //ET to GMT
+    // Get timezone offset from user's device
+
+    const timezoneOffset = new Date().getTimezoneOffset() / 60;
+    hours -= timezoneOffset; // Adjust for timezone
 
     const utcDate = new Date(Date.UTC(2023, month, day, hours, minutes));
 
     return utcDate.getTime();
-  }
+}
 
   const tick = () => {
     timeLeft -= 1000;
@@ -46,7 +49,7 @@
 
   const timer = setInterval(tick, 1000);
 
-  function formatTimer(duration) {
+  function formatTimer(duration: number) {
     if (!duration) return "TBD";
     let remaining = {
       seconds: Math.floor((duration / 1000) % 60),
