@@ -13,18 +13,18 @@
 		<meta name="robots" content="index, follow" />
 		<title>FightCardsHQ</title>
 		%sveltekit.head%
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Q7GSW5NYN"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+	
+			gtag('config', 'G-6Q7GSW5NYN');
+		</script>
 	</head>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Q7GSW5NYN"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'G-6Q7GSW5NYN');
-	</script>
 	<body>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
