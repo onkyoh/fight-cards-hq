@@ -27,10 +27,13 @@ button {
 }
 
 main {
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: min(2vw, 1rem);
+  padding-bottom: none;
+  height: 100%;
 }
 
 header {
@@ -52,29 +55,32 @@ header {
   gap: 0.5rem;
   height: calc(100vh - 3rem);
 }
-.card-container div {
+.card-container > div {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   font-size: 1.5rem;
 }
-.card-container div .big {
+.card-container > div .big {
   line-height: 0.8rem;
   padding-bottom: 0.2rem;
 }
-.card-container div span {
+.card-container > div span {
   cursor: pointer;
 }
 .card-container h3 {
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+.card-container h4 {
+  font-size: 1.4rem;
 }
 .card-container h4:last-of-type {
   font-family: Consolas, monospace;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 .card-container h5 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 .card-container ul {
   list-style: none;
@@ -83,35 +89,76 @@ header {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-.card-container ul:last-of-type {
-  padding-bottom: min(2vw, 1rem);
+  padding-bottom: 2rem;
 }
 .card-container ul li {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  position: relative;
 }
-.card-container ul li a {
+.card-container ul li .weight {
+  position: absolute;
+  top: 2rem;
+  font-size: 2rem;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 120%;
+}
+
+.fighter {
   flex: 1;
-  padding: 0.4rem 0.2rem;
-  padding-top: 0.55rem;
+  padding: 0.5rem;
   text-decoration: none;
-  border-radius: 0.5rem;
   text-align: center;
+  color: white;
+  height: -moz-fit-content;
+  height: fit-content;
+  gap: 0.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.card-container ul li a:first-of-type {
+.fighter:first-of-type {
   background-color: #d43939;
-  color: white;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
-.card-container ul li a:last-of-type {
+.fighter:last-of-type {
   background-color: #4a4aee;
-  color: white;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
-.card-container ul li span {
+.fighter:last-of-type .name-picture {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.fighter:last-of-type .country-record {
+  flex-direction: row-reverse;
+}
+.fighter div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  background-color: inherit !important;
+}
+.fighter .name-picture {
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.fighter .name-picture img {
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 4px black;
+}
+.fighter .country-record {
+  justify-content: space-between;
+}
+.fighter .country-record img {
   width: 2rem;
-  background-color: inherit;
 }
 
 .close {
@@ -176,7 +223,10 @@ body {
   color: black;
   transition: background-color 0.3s;
 }
-body h3, body h4, body h5, body span {
+body h3,
+body h4,
+body h5,
+body span {
   color: black;
 }
 body aside li {
@@ -186,11 +236,20 @@ body * {
   background-color: #f2eee2;
   color: black;
 }
-body * h3, body * h4, body * h5, body * span {
+body * h3,
+body * h4,
+body * h5,
+body * span {
   color: black;
 }
 body * aside li {
   background-color: #e4e0d4;
+}
+body * .fighter * {
+  color: white !important;
+}
+body * .weight {
+  color: #fff;
 }
 
 body.dark-mode {
@@ -199,9 +258,6 @@ body.dark-mode {
 }
 body.dark-mode * {
   background-color: #242526;
-  color: white;
-}
-body.dark-mode span {
   color: white;
 }
 body.dark-mode aside li {

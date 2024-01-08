@@ -10,60 +10,33 @@
 	let timeLeft: number;
 
 	function dateToMs(dateStr: string) {
-		const dateArray = dateStr.split(' ').filter((idx) => idx !== '');
+		const dateArray = dateStr.split(' ');
 
-		let eventDate = {
-			year: 0,
-			month: 0,
-			date: 0,
-			hour: 0,
-			minute: 0
-		};
+		for (let i = 0; i < dateArray.length; i++) {
+			if (dateArray[i] === '') {
+				dateArray.splice(i, 1);
+			}
+		}
 
-		const months = [
-			'January',
-			'February',
-			'March',
-			'April',
-			'May',
-			'June',
-			'July',
-			'August',
-			'September',
-			'October',
-			'November',
-			'December'
-		];
+		const [weekday, monthStr, dayStr, timeStr, ofDay, tzStr] = dateArray;
 
-		//month
-		eventDate.month = months.indexOf(dateArray[1]);
+		const month = new Date(Date.parse(`${monthStr} 1, 2000`)).getMonth();
 
-		//year
-		new Date().getMonth() <= eventDate.month
-			? (eventDate.year = new Date().getFullYear())
-			: (eventDate.year = new Date().getFullYear() + 1);
+		let [hours, minutes] = timeStr.split(':').map((str: string) => parseInt(str));
 
-		//date
-		eventDate.date = parseInt(dateArray[2].slice(0, -1));
+		const day = parseInt(dayStr.replace(',', ''));
 
-		let hour: number | string[] = dateArray[3].split(':');
-		//minute
-		eventDate.minute = parseInt(hour[1]);
+		if (ofDay === 'PM') {
+			hours += 12;
+		}
 
-		//hour
-		hour = parseInt(hour[0]);
+		hours += 5; //ET to GMT
 
-		dateArray[4] === 'PM' || (hour === 12 && dateArray[4] === 'AM')
-			? (eventDate.hour = hour + 12)
-			: (eventDate.hour = hour);
+		const year = new Date().getFullYear();
 
-		return new Date(
-			eventDate.year,
-			eventDate.month,
-			eventDate.date,
-			eventDate.hour,
-			eventDate.minute
-		).getTime();
+		const utcDate = new Date(Date.UTC(year, month, day, hours, minutes));
+
+		return utcDate.getTime();
 	}
 
 	const tick = () => {
@@ -93,6 +66,10 @@
 	}
 
 	$: timeLeft = dateToMs(event.date) - new Date().getTime();
+
+	onMount(() => {
+		timeLeft = dateToMs(event.date) - new Date().getTime();
+	});
 
 	onDestroy(() => {
 		clearInterval(timer);
