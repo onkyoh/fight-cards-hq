@@ -1,25 +1,26 @@
- interface IData {
-    doc: {
-      updatedAt: string;
-      _id: string;
-      data: IEvent[]
-    }
-  }
-  
- interface IFight {
-      main: boolean;
-      fighterA: {
-        name: string;
-        link: string;
-      };
-      fighterB: {
-        name: string;
-        link: string;
-      };
-  }
-  
- interface IEvent {
-      date: string;
-      title: string;
-      fights: IFight[];
-  }
+interface IFighter {
+	name: string;
+	record: string;
+	country: string;
+	picture: string;
+	link: string;
+}
+
+interface IFight {
+	main: boolean;
+	weight: string;
+	fighterA: IFighter;
+	fighterB: IFighter;
+}
+
+interface IEvent {
+	title: string;
+	date: string;
+	link: string;
+	fights: IFight[];
+}
+
+interface IData {
+	_id: string;
+	data: IEvent[];
+}

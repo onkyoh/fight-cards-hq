@@ -1,9 +1,13 @@
 <script lang="ts">
-    export let matchup: IFight;
-  </script>
-  
-  <li>
-    <a href={matchup.fighterA.link}>{matchup.fighterA.name}</a>
-    <span>VS</span>
-    <a href={matchup.fighterB.link}>{matchup.fighterB.name}</a>
-  </li>
+	import Fighter from './Fighter.svelte';
+
+	export let matchup: IFight;
+</script>
+
+<li>
+	<Fighter fighter={matchup.fighterA} />
+
+	<span class="weight">{matchup.weight}</span>
+
+	<Fighter fighter={matchup.fighterB} />
+</li>
