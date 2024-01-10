@@ -8,14 +8,13 @@
 </script>
 
 <a class="fighter" href={fighter.link}>
-	<div class="name-picture">
-		<img src={fighter.picture} alt={fighter.name} />
+	<img src={fighter.picture} alt={fighter.name} />
+	<div>
 		{fighter.name}
-	</div>
-
-	<div class="country-record">
-		<img src={fighter.country} alt={fighter.name + ' country of origin'} />{displayRecord(
-			fighter.record
-		)}
+		<div class="country-record">
+			<img src={fighter.country} alt={fighter.name + ' country of origin'} />{displayRecord(
+				fighter.record
+			)}
+		</div>
 	</div>
 </a>

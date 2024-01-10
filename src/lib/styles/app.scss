@@ -114,7 +114,7 @@ header {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 1.5rem;
 		padding-bottom: 2rem;
 		li {
 			display: flex;
@@ -122,6 +122,7 @@ header {
 			align-items: center;
 			width: 100%;
 			position: relative;
+			gap: 0.5rem;
 
 			.weight {
 				position: absolute;
@@ -139,7 +140,7 @@ header {
 
 .fighter {
 	flex: 1;
-	padding: 0.5rem;
+
 	text-decoration: none;
 
 	text-align: center;
@@ -151,45 +152,52 @@ header {
 	flex-direction: column;
 	justify-content: space-between;
 
+	> div {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.5rem;
+		font-size: 1.5rem;
+		padding: 0.5rem;
+		height: 100%;
+
+		.country-record {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+
+			background-color: inherit !important;
+			img {
+				width: 2rem;
+			}
+		}
+	}
+
+	> img {
+		border-radius: 0.5rem;
+		@include boxShadow(4px);
+		width: fit-content;
+	}
+
 	&:first-of-type {
-		background-color: $red;
-		border-radius: 0.5rem 0 0 0.5rem;
+		> div {
+			border-radius: 0.5rem;
+			background-color: $red;
+		}
 	}
 
 	&:last-of-type {
-		background-color: $blue;
-		border-radius: 0 0.5rem 0.5rem 0;
-		.name-picture {
+		> img {
+			align-self: flex-end;
+		}
+		> div {
 			align-items: flex-end;
-			justify-content: flex-end;
-		}
-		.country-record {
-			flex-direction: row-reverse;
-		}
-	}
-
-	div {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 1.5rem;
-		background-color: inherit !important;
-	}
-
-	.name-picture {
-		flex-direction: column;
-		align-items: flex-start;
-		text-align: left;
-		img {
+			background-color: $blue;
 			border-radius: 0.5rem;
-			@include boxShadow(4px);
-		}
-	}
-
-	.country-record {
-		justify-content: space-between;
-		img {
-			width: 2rem;
+			.country-record {
+				flex-direction: row-reverse;
+			}
 		}
 	}
 }
@@ -259,9 +267,6 @@ body {
 			* {
 				color: white !important;
 			}
-		}
-		.weight {
-			color: #fff;
 		}
 	}
 

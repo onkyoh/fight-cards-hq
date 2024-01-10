@@ -88,7 +88,7 @@ header {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.5rem;
   padding-bottom: 2rem;
 }
 .card-container ul li {
@@ -97,6 +97,7 @@ header {
   align-items: center;
   width: 100%;
   position: relative;
+  gap: 0.5rem;
 }
 .card-container ul li .weight {
   position: absolute;
@@ -111,7 +112,6 @@ header {
 
 .fighter {
   flex: 1;
-  padding: 0.5rem;
   text-decoration: none;
   text-align: center;
   color: white;
@@ -123,42 +123,45 @@ header {
   flex-direction: column;
   justify-content: space-between;
 }
-.fighter:first-of-type {
-  background-color: #d43939;
-  border-radius: 0.5rem 0 0 0.5rem;
-}
-.fighter:last-of-type {
-  background-color: #4a4aee;
-  border-radius: 0 0.5rem 0.5rem 0;
-}
-.fighter:last-of-type .name-picture {
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-.fighter:last-of-type .country-record {
-  flex-direction: row-reverse;
-}
-.fighter div {
+.fighter > div {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.5rem;
-  background-color: inherit !important;
-}
-.fighter .name-picture {
   flex-direction: column;
   align-items: flex-start;
-  text-align: left;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  height: 100%;
 }
-.fighter .name-picture img {
+.fighter > div .country-record {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: inherit !important;
+}
+.fighter > div .country-record img {
+  width: 2rem;
+}
+.fighter > img {
   border-radius: 0.5rem;
   box-shadow: 0px 0px 4px black;
+  width: -moz-fit-content;
+  width: fit-content;
 }
-.fighter .country-record {
-  justify-content: space-between;
+.fighter:first-of-type > div {
+  border-radius: 0.5rem;
+  background-color: #d43939;
 }
-.fighter .country-record img {
-  width: 2rem;
+.fighter:last-of-type > img {
+  align-self: flex-end;
+}
+.fighter:last-of-type > div {
+  align-items: flex-end;
+  background-color: #4a4aee;
+  border-radius: 0.5rem;
+}
+.fighter:last-of-type > div .country-record {
+  flex-direction: row-reverse;
 }
 
 .close {
@@ -247,9 +250,6 @@ body * aside li {
 }
 body * .fighter * {
   color: white !important;
-}
-body * .weight {
-  color: #fff;
 }
 
 body.dark-mode {
