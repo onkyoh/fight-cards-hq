@@ -7,7 +7,7 @@
 	};
 
 	const displayImage = (img: string) => {
-		return fighter.picture.includes('https') ? img : '/src/assets/fallbackFighter.gif';
+		return fighter.picture.includes('https') ? img : '/fallbackFighter.gif';
 	};
 </script>
 

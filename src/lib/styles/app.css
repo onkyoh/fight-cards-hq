@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Bebas Neue";
-  src: url("../assets/BebasNeue-Regular.ttf") format("truetype");
+  src: url("/BebasNeue-Regular.ttf") format("truetype");
   font-display: swap;
 }
 * {
@@ -144,6 +144,8 @@ header {
 }
 .fighter > img {
   border-radius: 0.5rem;
+  width: 77px;
+  height: 77px;
   box-shadow: 0px 0px 4px black;
   width: -moz-fit-content;
   width: fit-content;
@@ -151,6 +153,7 @@ header {
 .fighter:first-of-type > div {
   border-radius: 0.5rem;
   background-color: #d43939;
+  text-align: left;
 }
 .fighter:last-of-type > img {
   align-self: flex-end;
@@ -159,6 +162,7 @@ header {
   align-items: flex-end;
   background-color: #4a4aee;
   border-radius: 0.5rem;
+  text-align: right;
 }
 .fighter:last-of-type > div .country-record {
   flex-direction: row-reverse;

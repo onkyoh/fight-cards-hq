@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Bebas Neue';
-	src: url('../assets/BebasNeue-Regular.ttf') format('truetype');
+	src: url('/BebasNeue-Regular.ttf') format('truetype');
 	font-display: swap;
 }
 
@@ -176,6 +176,8 @@ header {
 
 	> img {
 		border-radius: 0.5rem;
+		width: 77px;
+		height: 77px;
 		@include boxShadow(4px);
 		width: fit-content;
 	}
@@ -184,6 +186,7 @@ header {
 		> div {
 			border-radius: 0.5rem;
 			background-color: $red;
+			text-align: left;
 		}
 	}
 
@@ -195,6 +198,7 @@ header {
 			align-items: flex-end;
 			background-color: $blue;
 			border-radius: 0.5rem;
+			text-align: right;
 			.country-record {
 				flex-direction: row-reverse;
 			}
