@@ -14,6 +14,7 @@
 <a class="fighter" href={fighter.link}>
 	<img src={displayImage(fighter.picture)} alt={fighter.name} />
 	<div>
+		{fighter.name}
 		<div class="country-record">
 			<img src={fighter.country} alt={fighter.name + ' country of origin'} />{displayRecord(
 				fighter.record
