@@ -28,7 +28,7 @@
 			/>
 		</picture>
 
-		<h1>{data.title}</h1>
+		<h1>{data.title.substring(0, data.title.length - ' | FightCardsHQ'.length)}</h1>
 
 		<span>Adnan Radwan | {data.date}</span>
 	</header>

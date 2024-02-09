@@ -10,7 +10,7 @@ export async function load() {
 
 		return {
 			posts: posts,
-			title: 'Blog',
+			title: 'Blog | FightCardsHQ',
 			description:
 				'The premier destination for in-depth analysis of recent fights and informed predictions on upcoming bouts, all from a perspective of a 0 stripe white belt who has only ever light sparred.'
 		};
