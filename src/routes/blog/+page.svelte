@@ -39,18 +39,18 @@
 					<picture>
 						<source
 							media="(max-width: 600px)"
-							srcset={`/src/posts/${post.slug}/${post.img.src}-m.webp`}
+							srcset={`/posts/${post.slug}/${post.img.src}-m.webp`}
 							type="image/webp"
 						/>
 
 						<source
 							media="(min-width: 601px)"
-							srcset={`/src/posts/${post.slug}/${post.img.src}.webp`}
+							srcset={`/posts/${post.slug}/${post.img.src}.webp`}
 							type="image/webp"
 						/>
 
 						<img
-							src={`/src/posts/${post.slug}/${post.img.src}`}
+							src={`/posts/${post.slug}/${post.img.src}`}
 							alt={`${post.img.alt}`}
 							height="400"
 							width="600"
