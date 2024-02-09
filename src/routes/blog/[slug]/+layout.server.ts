@@ -15,7 +15,7 @@ export interface Post {
 
 export async function load({ params }) {
 	try {
-		const module = await import(`../../../posts/${params.slug}/index.json`);
+		const module = await import(`../../../posts/${params.slug}.json`);
 		const post: Post = module.default as Post;
 
 		return {

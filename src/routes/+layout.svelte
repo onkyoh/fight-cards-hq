@@ -29,7 +29,7 @@
 	<title>{$page.data.title}</title>
 
 	<meta name="description" content={$page.data.description} />
-	<link rel="stylesheet" href="/src/styles/app.css" />
+	<link rel="stylesheet" href="/styles/app.css" />
 </svelte:head>
 
 <main>

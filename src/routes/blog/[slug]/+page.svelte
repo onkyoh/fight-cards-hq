@@ -9,13 +9,13 @@
 		<picture>
 			<source
 				media="(max-width: 600px)"
-				srcset={`/src/posts/${data.slug}/${data.img.src}-m.webp`}
+				srcset={`/posts/${data.slug}/${data.img.src}-m.webp`}
 				type="image/webp"
 			/>
 
 			<source
 				media="(min-width: 601px)"
-				srcset={`/src/posts/${data.slug}/${data.img.src}.webp`}
+				srcset={`/posts/${data.slug}/${data.img.src}.webp`}
 				type="image/webp"
 			/>
 
