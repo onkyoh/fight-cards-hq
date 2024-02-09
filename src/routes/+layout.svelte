@@ -29,6 +29,27 @@
 	<title>{$page.data.title}</title>
 
 	<meta name="description" content={$page.data.description} />
+
+	<meta property="og:title" content={$page.data.title} />
+
+	<meta property="og:description" content={$page.data.description} />
+	<meta property="og:url" content={`https://fightcardshq.com${$page.url.pathname}`} />
+	<meta
+		property="og:image"
+		content={$page.data?.img?.src
+			? `/posts/ufc-298-prediction/${$page.data.img.src}`
+			: '/android-chrome-512x512.png'}
+	/>
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={$page.data.title} />
+	<meta name="twitter:description" content={$page.data.description} />
+	<meta
+		name="twitter:image"
+		content={$page.data?.img?.src
+			? `/posts/ufc-298-prediction/${$page.data.img.src}`
+			: '/android-chrome-512x512.png'}
+	/>
 	<link rel="stylesheet" href="/styles/app.css" />
 </svelte:head>
 

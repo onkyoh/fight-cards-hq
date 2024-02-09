@@ -19,7 +19,8 @@ export async function load({ params }) {
 		const post: Post = module.default as Post;
 
 		return {
-			...post
+			...post,
+			title: post.title + ' | FightCardsHQ'
 		};
 	} catch (e) {
 		throw error(404, 'Blog not found');
