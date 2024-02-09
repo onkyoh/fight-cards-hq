@@ -1,11 +1,8 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-
-	import ModeToggle from './ModeToggle.svelte';
 	import Matchup from './Matchup.svelte';
 
 	export let event: IEvent;
-	export let toggleEvents: () => void;
 
 	let timeLeft: number;
 
@@ -77,9 +74,7 @@
 </script>
 
 <header>
-	<ModeToggle />
 	<h3>{event.title}</h3>
-	<button id="menu" on:click={toggleEvents}>🥊</button>
 </header>
 
 <h4>{event.date}</h4>

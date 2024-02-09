@@ -7,18 +7,26 @@
 	};
 
 	const displayImage = (img: string) => {
-		return fighter.picture.includes('https') ? img : '/fallbackFighter.gif';
+		return !fighter.picture || !fighter.picture.includes('https') ? '/fallbackFighter.gif' : img;
 	};
 </script>
 
 <a class="fighter" href={fighter.link}>
-	<img src={displayImage(fighter.picture)} alt={fighter.name} />
+	<img
+		src={displayImage(fighter.picture)}
+		alt={fighter.name}
+		height="77"
+		width="77"
+		decoding="async"
+	/>
 	<div>
 		{fighter.name}
 		<div class="country-record">
-			<img src={fighter.country} alt={fighter.name + ' country of origin'} />{displayRecord(
-				fighter.record
-			)}
+			<img
+				src={fighter.country}
+				alt={fighter.name + ' country of origin'}
+				decoding="async"
+			/>{displayRecord(fighter.record)}
 		</div>
 	</div>
 </a>
