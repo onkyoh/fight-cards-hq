@@ -81,14 +81,14 @@
 <h4 id="timer">{formatTimer(timeLeft)}</h4>
 <h5>MAIN</h5>
 <ul>
-	{#each event.fights.filter((fight) => fight.main) as fight}
+	{#each event.fights.filter((fight) => fight.main) as fight (fight.fighterA.name + 'vs' + fight.fighterB.name)}
 		<Matchup matchup={fight} />
 	{/each}
 </ul>
 {#if event.fights.filter((fight) => !fight.main).length > 0}
 	<h5>PRELIMS</h5>
 	<ul>
-		{#each event.fights.filter((fight) => !fight.main) as fight}
+		{#each event.fights.filter((fight) => !fight.main) as fight (fight.fighterA.name + 'vs' + fight.fighterB.name)}
 			<Matchup matchup={fight} />
 		{/each}
 	</ul>

@@ -64,6 +64,7 @@ img {
 
 main {
 	padding: 1rem 0;
+	overflow-x: hidden;
 }
 
 html {
@@ -189,6 +190,19 @@ nav {
 				line-height: 120%;
 			}
 		}
+	}
+}
+
+.swipe-titles {
+	position: absolute;
+	writing-mode: vertical-rl;
+	text-orientation: upright;
+	font-size: 1.3rem;
+	&:first-of-type {
+		left: -85px;
+	}
+	&:last-of-type {
+		right: -85px;
 	}
 }
 
@@ -502,6 +516,9 @@ article {
 }
 
 @media (min-width: 1300px) {
+	.swipe-titles {
+		display: none;
+	}
 	main {
 		justify-content: center;
 	}
