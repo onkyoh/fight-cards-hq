@@ -3,10 +3,10 @@
 	import { eventStore, selectEvent } from '../store/eventStore';
 
 	let startX: number | undefined;
-	let currentX: number = 0; // Initialize as 0 for correct reset
+	let currentX: number = 0;
 	let dragging = false;
 
-	const maxTranslation = 150; // Example max translation distance in pixels
+	const maxTranslation = 160; // Example max translation distance in pixels
 
 	const onTouchStart = (e: TouchEvent) => {
 		const touch = e.touches[0];
@@ -16,6 +16,7 @@
 
 	const onTouchMove = (e: TouchEvent) => {
 		if (startX === undefined || !dragging) return;
+
 		const touch = e.touches[0];
 		let moveX = touch.clientX - startX;
 
@@ -33,22 +34,24 @@
 		}
 
 		currentX = moveX;
-		e.preventDefault(); // Prevent scrolling while dragging
 	};
 
 	const onTouchEnd = () => {
 		if (startX !== undefined && currentX !== 0) {
-			const swipeDistance = currentX;
-
+			console.log(currentX);
 			// Right swipe (previous event) - Check if not at the first item
-			if (swipeDistance > 100 && $eventStore.eventsIdx > 0) {
+			if (currentX >= maxTranslation && $eventStore.eventsIdx > 0) {
 				selectEvent($eventStore.eventsIdx - 1);
 			}
 			// Left swipe (next event) - Check if not at the last item
-			else if (swipeDistance < -100 && $eventStore.eventsIdx < $eventStore.events!.length - 1) {
+			else if (
+				currentX <= -maxTranslation &&
+				$eventStore.eventsIdx < $eventStore.events!.length - 1
+			) {
 				selectEvent($eventStore.eventsIdx + 1);
 			}
 		}
+
 		// Reset currentX to 0 instead of undefined for correct reset
 		currentX = 0;
 		dragging = false;
@@ -57,7 +60,9 @@
 
 <div
 	class="card-container"
-	style="transition: transform 0.3s ease-out; transform: translateX({currentX}px);"
+	style="transition: transform 0.3s ease-out; transform: translateX({-70 < currentX && currentX < 70
+		? 0
+		: currentX}px);"
 	on:touchstart={onTouchStart}
 	on:touchmove={onTouchMove}
 	on:touchend={onTouchEnd}
@@ -73,8 +78,18 @@
 				>
 			{/each}
 		</div>
-		<span class="swipe-titles">{$eventStore.events[$eventStore.eventsIdx - 1]?.title || ''}</span>
+		<span class="swipe-titles">
+			{#each Array(3) as _, i}
+				{$eventStore.events[$eventStore.eventsIdx - 1]?.title || ''}
+				-
+			{/each}</span
+		>
 		<EventCard event={$eventStore.events[$eventStore.eventsIdx]} />
-		<span class="swipe-titles">{$eventStore.events[$eventStore.eventsIdx + 1]?.title || ''}</span>
+		<span class="swipe-titles">
+			{#each Array(3) as _, i}
+				{$eventStore.events[$eventStore.eventsIdx + 1]?.title || ''}
+				-
+			{/each}</span
+		>
 	{/if}
 </div>
