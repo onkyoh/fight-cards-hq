@@ -58,6 +58,7 @@ img {
 
 main {
   padding: 1rem 0;
+  overflow-x: hidden;
 }
 
 html {
@@ -177,6 +178,19 @@ nav ul li a {
   justify-content: center;
   align-items: center;
   line-height: 120%;
+}
+
+.swipe-titles {
+  position: absolute;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 1.3rem;
+}
+.swipe-titles:first-of-type {
+  left: -85px;
+}
+.swipe-titles:last-of-type {
+  right: -85px;
 }
 
 .fighter {
@@ -462,6 +476,9 @@ article a:nth-of-type(odd)::after {
 }
 
 @media (min-width: 1300px) {
+  .swipe-titles {
+    display: none;
+  }
   main {
     justify-content: center;
   }

@@ -3,55 +3,62 @@
 	import { eventStore, selectEvent } from '../store/eventStore';
 
 	let startX: number | undefined;
-	let endX: number | undefined;
+	let currentX: number = 0; // Initialize as 0 for correct reset
+	let dragging = false;
 
-	const onMouseDown = (e: MouseEvent) => {
-		startX = e.offsetX;
-	};
+	const maxTranslation = 150; // Example max translation distance in pixels
 
-	const onMouseUp = (e: MouseEvent) => {
-		if (startX && startX - e.offsetX > 50) {
-			if ($eventStore.eventsIdx === $eventStore.events!.length - 1) return;
-			selectEvent($eventStore.eventsIdx + 1);
-		}
-		if (startX && startX - e.offsetX < -50) {
-			if ($eventStore.eventsIdx === 0) return;
-			selectEvent($eventStore.eventsIdx - 1);
-		}
-		startX = undefined;
-	};
-
-	const onTouchDown = (e: TouchEvent) => {
-		const container = e.target as HTMLElement;
-		const rect = container.getBoundingClientRect();
-		startX = e.touches[0].clientX - rect.left;
+	const onTouchStart = (e: TouchEvent) => {
+		const touch = e.touches[0];
+		startX = touch.clientX;
+		dragging = true;
 	};
 
 	const onTouchMove = (e: TouchEvent) => {
-		const container = e.target as HTMLElement;
-		const rect = container.getBoundingClientRect();
-		endX = e.touches[0].clientX - rect.left;
+		if (startX === undefined || !dragging) return;
+		const touch = e.touches[0];
+		let moveX = touch.clientX - startX;
+
+		// Clamping moveX to within the maxTranslation bounds
+		moveX = Math.max(Math.min(moveX, maxTranslation), -maxTranslation);
+
+		// Prevent moving left if at the last event
+		if ($eventStore.eventsIdx === $eventStore.events!.length - 1 && moveX < 0) {
+			moveX = 0;
+		}
+
+		// Prevent moving right if at the first event
+		if ($eventStore.eventsIdx === 0 && moveX > 0) {
+			moveX = 0;
+		}
+
+		currentX = moveX;
+		e.preventDefault(); // Prevent scrolling while dragging
 	};
 
-	const onTouchEnd = (e: TouchEvent) => {
-		if (startX && endX && startX - endX > 50) {
-			if ($eventStore.eventsIdx === $eventStore.events!.length - 1) return;
-			selectEvent($eventStore.eventsIdx + 1);
+	const onTouchEnd = () => {
+		if (startX !== undefined && currentX !== 0) {
+			const swipeDistance = currentX;
+
+			// Right swipe (previous event) - Check if not at the first item
+			if (swipeDistance > 100 && $eventStore.eventsIdx > 0) {
+				selectEvent($eventStore.eventsIdx - 1);
+			}
+			// Left swipe (next event) - Check if not at the last item
+			else if (swipeDistance < -100 && $eventStore.eventsIdx < $eventStore.events!.length - 1) {
+				selectEvent($eventStore.eventsIdx + 1);
+			}
 		}
-		if (startX && endX && startX - endX < -50) {
-			if ($eventStore.eventsIdx === 0) return;
-			selectEvent($eventStore.eventsIdx - 1);
-		}
-		startX = undefined;
-		endX = undefined;
+		// Reset currentX to 0 instead of undefined for correct reset
+		currentX = 0;
+		dragging = false;
 	};
 </script>
 
 <div
 	class="card-container"
-	on:mousedown={onMouseDown}
-	on:mouseup={onMouseUp}
-	on:touchstart={onTouchDown}
+	style="transition: transform 0.3s ease-out; transform: translateX({currentX}px);"
+	on:touchstart={onTouchStart}
 	on:touchmove={onTouchMove}
 	on:touchend={onTouchEnd}
 >
@@ -66,6 +73,8 @@
 				>
 			{/each}
 		</div>
+		<span class="swipe-titles">{$eventStore.events[$eventStore.eventsIdx - 1]?.title || ''}</span>
 		<EventCard event={$eventStore.events[$eventStore.eventsIdx]} />
+		<span class="swipe-titles">{$eventStore.events[$eventStore.eventsIdx + 1]?.title || ''}</span>
 	{/if}
 </div>
