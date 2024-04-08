@@ -78,18 +78,8 @@
 				>
 			{/each}
 		</div>
-		<span class="swipe-titles">
-			{#each Array(3) as _, i}
-				{$eventStore.events[$eventStore.eventsIdx - 1]?.title || ''}
-				-
-			{/each}</span
-		>
+		<span class="swipe-titles">Previous Card</span>
 		<EventCard event={$eventStore.events[$eventStore.eventsIdx]} />
-		<span class="swipe-titles">
-			{#each Array(3) as _, i}
-				{$eventStore.events[$eventStore.eventsIdx + 1]?.title || ''}
-				-
-			{/each}</span
-		>
+		<span class="swipe-titles">Next Card </span>
 	{/if}
 </div>
