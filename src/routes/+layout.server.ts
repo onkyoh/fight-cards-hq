@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 export async function load({ fetch }) {
-	const res = await fetch('https://mmafightcardsapi.adaptable.app/');
+	const res = await fetch('https://mma-fights-api-production.up.railway.app/');
 
 	if (!res.ok) {
 		throw error(500, 'Error, try refreshing');
